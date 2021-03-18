@@ -1,0 +1,73 @@
+NUM - (num - 1) ----- If number is lower
+topNum - Num ------ If number is higher
+
+let max = 100
+let min = 0
+let range = min, max
+let num = range
+let lowerNum = num - 1
+let higherNum = max - num
+if(num <= 100){
+console.log()}
+else if()
+
+
+let numHigh = 100;
+let numLow = 0;
+let numMid = 50;
+let myNum = 1;
+
+let highNum = 10;
+let lowNum = 1;
+let response = "";
+let compGuess = highNum / 2
+
+
+
+
+
+//Variables
+let highNum = 10;
+let lowNum = 1;
+let response = "";
+let compGuess = highNum / 2
+
+//Picking a number
+let number = await ask(
+  "Is your number between" + lowNum + "and" + highNum + "?"
+);
+//Letting computer win
+if (response === "yes") {
+ let number = await ask("Is your number" + compGuess + "?");
+  ////process.exit()////
+}
+//Wrong guess
+if (response === "no") {
+  let number = await ask("Is your number higher (h) or lower (l)?");
+}
+//Modifying guess range
+
+//It's learning
+
+//Extending between range
+
+let number = await ask( "Try a larger range?")
+if(response === "Yes")
+//Anti Cheat Ware
+let number = await ask("Are you cheating one me?!?!?")
+//Reversing Roles
+let number = await ask("Now, its only fair if you guess my number!")
+//ICEBOX
+//Play again?
+let number = await ask("Would you like to play again?");
+if(response === "Y"){
+
+}
+else if(response === "N"){
+  process.exit()
+}
+
+//Revealing amount of tries
+//console.log("You guessed" + myTries + "times")//
+let number = await ask("It only took me" + compTries + "times, I'm smarter than you");
+//Combining games

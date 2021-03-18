@@ -19,7 +19,7 @@ async function start() {
 //Original Start
     let minCurrent = 0;
     ("yes");
-    while (playAgain === "yes") {
+    while (playAgain === "yes" || playAgain === "y") {
       console.log(
         "Welcome to the game, please pick a max number for me to guess!"
       );
@@ -92,6 +92,7 @@ async function start() {
         break;
       } else {
         console.log("ERROR!! FORCED CLOSE!!");
+        process.exit()
       }
     }
     process.exit();
