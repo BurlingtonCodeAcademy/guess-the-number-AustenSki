@@ -16,50 +16,50 @@ async function start() {
   game = await ask("reverse or guess? ");
   if (game === "guess") {
     let minNumber = 1;
-//Original Start
+
+    //Original Start
     let minCurrent = 0;
-    ("yes");
-    while (playAgain === "yes" || playAgain === "y") {
+    let playAgain = "yes";
+    while (playAgain === "yes") {
       console.log(
         "Welcome to the game, please pick a max number for me to guess!"
       );
       let maxNumber = await ask(" What do you choose for your max number?");
       let medianChange = maxNumber / 2;
       let maxCurrent = maxNumber;
-
+      let secretNum = await ask(
+        "What's your number?, Don't worry I won't look!"
+      );
       // High and Low Function
       let Guess = await ask("Is " + medianChange + " your number?");
+      let numOfGuesses = 1;
 
-      if (Guess === "yes") {
+      if (Guess === "yes" || Guess === "y") {
+        console.log("It took me " + numOfGuesses + " tries!");
         console.log("Congrats, I won!");
         playAgain = await ask("Would you like to play again?");
       } else {
-        while (Guess !== "yes") {
-          // let me know I'm in loop 
-          //console.log("im in" )
+        while (Guess !== "yes" || Guess !== "y") {
           let currentGuess = await ask("higher or lower?");
           console.log("\ncurrent guess is " + medianChange);
-         
+          numOfGuesses = numOfGuesses + 1;
           if (currentGuess === "h" || currentGuess === "higher") {
-            //Debugger viewing current variable values
-            // console.log("This is maxnumber" + maxNumber);
-            // console.log("This is current" + maxCurrent);
-            // console.log("This is median" + medianChange);
-            // console.log("im high");
-            medianChange = Math.round((+maxCurrent + medianChange) / 2);
+            minCurrent = medianChange;
+            medianChange = Math.round((+maxCurrent + minCurrent) / 2);
           } else if (currentGuess === "l" || currentGuess === "lower") {
-            //Debugger 2
-            // console.log("This is min number" + minNumber);
-            // console.log("This is current" + minCurrent);
-            // console.log("This is median" + medianChange);
-            // console.log("im low");
-            medianChange = Math.round((+minCurrent + medianChange) / 2);
+            maxCurrent = medianChange;
+            medianChange = Math.round((+minCurrent + maxCurrent) / 2);
+          }
+          if (medianChange - 1 < minCurrent|| medianChange + 1 > maxCurrent) {
+            console.log("Liar!, YOU ARE BANISHED!!");
+            process.exit();
           }
 
-          await ask("Is " + medianChange + " your number?");
-          
-          if (Guess === "yes") {
+          Guess = await ask("Is " + medianChange + " your number?");
+
+          if (Guess === "yes" || Guess === "y") {
             console.log("I won!");
+            console.log("It took me " + numOfGuesses + " tries!");
             playAgain = await ask("Would you like to play again?");
             break;
           }
@@ -70,7 +70,7 @@ async function start() {
     console.log("GAME OVER");
     process.exit();
   }
-//Reverse game we guess computers number
+  //Reverse game we guess computers number
   if (game === "reverse") {
     let randomNum = Math.round(Math.random() * 101);
     let correct = "no";
@@ -92,12 +92,11 @@ async function start() {
         break;
       } else {
         console.log("ERROR!! FORCED CLOSE!!");
-        process.exit()
       }
     }
     process.exit();
   } else {
     console.log("No game selected!");
-    process.exit;
+    process.exit();
   }
 }
